@@ -1,0 +1,187 @@
+---
+layout: default
+---
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <title>Rat RPG</title>
+<style>
+  .popup{
+    width: 400px;
+    background: #cfcfcf;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.3s, top 0.3s;
+  }
+  .open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%,-23%) scale(1);
+  }
+  .popup img{
+    width: 100px;
+    margin-top: -40px;
+  }
+  .popup h2{
+    font-size: 30px;
+    font-weight: 500;
+    margin: 10px 0 10px;
+  }
+  .popup button{
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background: #ff941c;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  .bigflexbox {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .bigflexbox > div {
+    background-color: black;
+    font-family: 'Courier New';
+    color: rgb(6, 240, 6);
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+    align-items: flex-end;
+  }
+  .terminalbox {
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    justify-content: space-between;
+  }
+  .terminalbox > p {
+    font-family: 'Courier New';
+    color: rgb(6, 240, 6);
+    text-align: left;
+    margin: 10px;
+    padding: 20px;
+    font-size: 18px;
+    overflow: hidden;
+  }
+  .terminalbox > div {
+    font-family: 'Courier New';
+    color: rgb(6, 240, 6);
+    text-align: left;
+    margin: 10px;
+    padding: 20px;
+    font-size: 18px;
+    overflow: hidden;
+    margin-right: 100px;
+  }
+  
+  .inputflexbox {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .inputflexbox > input {
+    background-color: black;
+    font-family: 'Courier New';
+    color: rgb(6, 240, 6);
+    margin: 10px;
+    padding: 20px;
+    font-size: 25px;
+  }
+  .orderthings {
+    display: flex;
+  }
+  .orderthings > div {
+    margin: 10px;
+    padding: 20px;
+  }
+  .altersize {
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+  
+  <div class="bigflexbox" style="height: 500px;">
+    <div class="altersize" style="flex-grow: 1;flex-shrink: 0;"></div> 
+    <div id="emptu" class="terminalbox" style="flex-grow: 8">
+        <p id="terminal">THIS IS THE TERMINAL <br> TYPE "PLAY" TO PLAY</p>
+        <div id="stats">
+          <p>HP: 7</p>
+          <p>MANA: 10</p>
+          <p id="garfhp" style="display: none;">GARFIELD: 7</p>
+          <p id="dalihp" style="display: none;">DALI: 7</p>
+          <p id="monahp" style="display: none;">MORGANA: 7</p>
+          <p id="kithp" style="display: none;">MR. KITTY: 7</p>
+        </div>
+    </div>
+    <div class="altersize" style="flex-grow: 1;flex-shrink: 0;"></div>   
+  </div>
+
+  <div class="inputflexbox">
+    <div class="altersize" style="flex-grow: 1;flex-shrink: 0;"></div> 
+    <input class="uc-text-smooth" type="text" id="textinput" style="flex-grow: 4;">
+    <div class="altersize" style="flex-grow: 1;flex-shrink: 0;"></div> 
+  </div>
+  <div class="popup" id="signin">
+    <form action="javascript:create_piss()">
+      <p><label>
+          Name:
+          <input type="text" name="name" id="name" required>
+      </label></p>
+      <p><label>
+          Pin:
+          <input type="text" name="pin" id="pin" required>
+      </label></p>
+      <p><label>
+          Level:
+          <input type="number" name="level" id="level">
+      </label></p>
+      <p><label>
+          Time:
+          <input type="number" name="time" id="time">
+      </label></p>
+      <p>
+          <button onclick="closepopup()">Create</button>
+      </p>
+  </form>
+  </div> 
+
+  <script>
+  const forceKeyPressUppercase = (e) => {
+    let el = e.target;
+    let charInput = e.keyCode;
+    if((charInput >= 97) && (charInput <= 122)) { // lowercase
+      if(!e.ctrlKey && !e.metaKey && !e.altKey) { // no modifier key
+        let newChar = charInput - 32;
+        let start = el.selectionStart;
+        let end = el.selectionEnd;
+        el.value = el.value.substring(0, start) + String.fromCharCode(newChar) + el.value.substring(end);
+        el.setSelectionRange(start+1, start+1);
+        e.preventDefault();
+      }
+    }
+  };
+
+  document.querySelectorAll(".uc-text-smooth").forEach(function(current) {
+    current.addEventListener("keypress", forceKeyPressUppercase);
+  });
+  document.getElementById("textinput").focus();
+  document.getElementById("textinput").select();
+  </script>
+  <script src="https://kkcbal.github.io/madeacopy/ratrpgcode.js"></script>
+</body>
+</html>
