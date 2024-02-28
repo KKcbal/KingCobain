@@ -25,7 +25,6 @@ public class RPG {
     }
 
     public static void main(String[] args) {
-        RPG user = new RPG();
         RPG team1 = new RPG("name", 7, 3, 5);
         RPG team2 = new RPG("name", 7, 3, 5);
         RPG team3 = new RPG("name", 7, 3, 5);
@@ -39,10 +38,7 @@ public class RPG {
 
         String uinp = scanner.nextLine();
 
-        user.name = uinp;
-        user.hp = 7;
-        user.atk = 1;
-        user.mp = 10;
+        RPG user = new RPG(uinp, 7, 1, 10);
 
         System.out.println("Hello " + user.name);
 
